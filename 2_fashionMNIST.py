@@ -95,6 +95,35 @@ But what about a scenario where writing rules like that is much
 # Optional Exercise 2
 # Q: Does adding an additional layer affect the training time and model accuracy?
 
+# import tensorflow as tf
+# print(tf.__version__)
+
+# mnist = tf.keras.datasets.mnist
+
+# (training_images, training_labels), (test_images, test_labels) = mnist.load_data()
+
+# training_images = training_images/255.0
+# test_images = test_images/255.0
+
+# model = tf.keras.models.Sequential([tf.keras.layers.Flatten(),
+#                                     tf.keras.layers.Dense(512, activation=tf.nn.relu),
+#                                     tf.keras.layers.Dense(256, activation=tf.nn.relu),
+#                                     tf.keras.layers.Dense(10, activation=tf.nn.softmax)])
+
+# model.compile(loss='sparse_categorical_crossentropy', optimizer='adam')
+
+# model.fit(training_images, training_labels)
+
+# model.evaluate(test_images, test_labels)
+
+# classifications = model.predict(test_images)
+
+# print(classifications[0])
+# print(test_labels[0])
+
+# Optional Exercise 3 and 4
+# Investigate the effect of number of training epochs and normalization
+
 import tensorflow as tf
 print(tf.__version__)
 
@@ -102,21 +131,20 @@ mnist = tf.keras.datasets.mnist
 
 (training_images, training_labels), (test_images, test_labels) = mnist.load_data()
 
+# comment the lines below to test for normalization
 training_images = training_images/255.0
 test_images = test_images/255.0
 
 model = tf.keras.models.Sequential([tf.keras.layers.Flatten(),
                                     tf.keras.layers.Dense(512, activation=tf.nn.relu),
-                                    tf.keras.layers.Dense(256, activation=tf.nn.relu),
                                     tf.keras.layers.Dense(10, activation=tf.nn.softmax)])
 
-model.compile(loss='sparse_categorical_crossentropy', optimizer='adam')
+model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-model.fit(training_images, training_labels)
+model.fit(training_images, training_labels, epochs=30)
 
 model.evaluate(test_images, test_labels)
 
 classifications = model.predict(test_images)
-
 print(classifications[0])
 print(test_labels[0])
