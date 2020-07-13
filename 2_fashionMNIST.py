@@ -17,51 +17,51 @@ But what about a scenario where writing rules like that is much
 """
 
 # import package
-# import tensorflow as tf
-# print(tf.__version__)
-# import numpy as np
-# import matplotlib.pyplot as plt
+import tensorflow as tf
+print(tf.__version__)
+import numpy as np
+import matplotlib.pyplot as plt
 
-# # accessing dataset directly from tf.keras datasets API
-# mnist = tf.keras.datasets.fashion_mnist
+# accessing dataset directly from tf.keras datasets API
+mnist = tf.keras.datasets.fashion_mnist
 
-# # loading into train and test set
-# (training_images, training_labels), (test_images, test_labels) = mnist.load_data()
+# loading into train and test set
+(training_images, training_labels), (test_images, test_labels) = mnist.load_data()
 
-# # The number of characters per line for the purpose of inserting line breaks (default 75).
-# np.set_printoptions(linewidth=200)
+# The number of characters per line for the purpose of inserting line breaks (default 75).
+np.set_printoptions(linewidth=200)
 
-# # displaying first image, printing its labels and image pixel in array form
-# # you can change the index to view other images
-# plt.imshow(training_images[0])
-# print(training_labels[0])
-# print(training_images[0])
+# displaying first image, printing its labels and image pixel in array form
+# you can change the index to view other images
+plt.imshow(training_images[0])
+print(training_labels[0])
+print(training_images[0])
 
-# # normalization
-# training_images = training_images/255.0
-# test_images = test_images/255.0
+# normalization
+training_images = training_images/255.0
+test_images = test_images/255.0
 
-# # model configuration
-# # Sequential = defines a sequence of layers in the NN
-# # Flatten = turns t into a 1D array
-# # Dense = add a layer of interconnected neurons
-# model = tf.keras.models.Sequential([tf.keras.layers.Flatten(),
-#                                     tf.keras.layers.Dense(128, activation=tf.nn.relu),
-#                                     tf.keras.layers.Dense(10, activation=tf.nn.softmax)])
+# model configuration
+# Sequential = defines a sequence of layers in the NN
+# Flatten = turns t into a 1D array
+# Dense = add a layer of interconnected neurons
+model = tf.keras.models.Sequential([tf.keras.layers.Flatten(),
+                                    tf.keras.layers.Dense(128, activation=tf.nn.relu),
+                                    tf.keras.layers.Dense(10, activation=tf.nn.softmax)])
 
-# # model building
-# model.compile(loss = 'sparse_categorical_crossentropy',
-#                 optimizer = tf.optimizers.Adam(),
-#                 metrics=['accuracy'])
-# model.fit(training_images, training_labels, epochs=5)
+# model building
+model.compile(loss = 'sparse_categorical_crossentropy',
+                optimizer = tf.optimizers.Adam(),
+                metrics=['accuracy'])
+model.fit(training_images, training_labels, epochs=5)
 
-# # model evaluation
-# model.evaluate(test_images, test_labels)
+# model evaluation
+model.evaluate(test_images, test_labels)
 
-# # perform prediction - Q: is the prediction accurate?
-# classifications = model.predict(test_images)
-# print(classifications[0])
-# print(test_labels[0])
+# perform prediction - Q: is the prediction accurate?
+classifications = model.predict(test_images)
+print(classifications[0])
+print(test_labels[0])
 
 # Optional Exercise 1
 # Please uncomment only these parts and comment out the rest
@@ -124,27 +124,27 @@ But what about a scenario where writing rules like that is much
 # Optional Exercise 3 and 4
 # Investigate the effect of number of training epochs and normalization
 
-import tensorflow as tf
-print(tf.__version__)
+# import tensorflow as tf
+# print(tf.__version__)
 
-mnist = tf.keras.datasets.mnist
+# mnist = tf.keras.datasets.mnist
 
-(training_images, training_labels), (test_images, test_labels) = mnist.load_data()
+# (training_images, training_labels), (test_images, test_labels) = mnist.load_data()
 
-# comment the lines below to test for normalization
-training_images = training_images/255.0
-test_images = test_images/255.0
+# # comment the lines below to test for normalization
+# training_images = training_images/255.0
+# test_images = test_images/255.0
 
-model = tf.keras.models.Sequential([tf.keras.layers.Flatten(),
-                                    tf.keras.layers.Dense(512, activation=tf.nn.relu),
-                                    tf.keras.layers.Dense(10, activation=tf.nn.softmax)])
+# model = tf.keras.models.Sequential([tf.keras.layers.Flatten(),
+#                                     tf.keras.layers.Dense(512, activation=tf.nn.relu),
+#                                     tf.keras.layers.Dense(10, activation=tf.nn.softmax)])
 
-model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+# model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-model.fit(training_images, training_labels, epochs=30)
+# model.fit(training_images, training_labels, epochs=30)
 
-model.evaluate(test_images, test_labels)
+# model.evaluate(test_images, test_labels)
 
-classifications = model.predict(test_images)
-print(classifications[0])
-print(test_labels[0])
+# classifications = model.predict(test_images)
+# print(classifications[0])
+# print(test_labels[0])
